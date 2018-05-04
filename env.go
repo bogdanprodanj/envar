@@ -8,11 +8,11 @@ import (
 
 // String retrieves string value of the env variable named by the key or returns predefined one
 func String(key, def string) string {
-	value := os.Getenv(key)
-	if len(value) < 1 {
+	s := os.Getenv(key)
+	if len(s) < 1 {
 		return def
 	}
-	return value
+	return s
 }
 
 // Int retrieves int value of the env variable named by the key or returns predefined one.
@@ -24,11 +24,11 @@ func Int(key, def string) (int, error) {
 // MustInt retrieves int value of the env variable named by the key or returns predefined one.
 // Panics if value can not be converted to int
 func MustInt(key, def string) int {
-	value, err := Int(key, def)
+	i, err := Int(key, def)
 	if err != nil {
 		panic(key + " must be int type")
 	}
-	return value
+	return i
 }
 
 // Float64 retrieves float64 value of the env variable named by the key or returns predefined one.
@@ -40,11 +40,11 @@ func Float64(key, def string) (float64, error) {
 // MustFloat64 retrieves int value of the env variable named by the key or returns predefined one.
 // Panics if value can not be converted to float64
 func MustFloat64(key, def string) float64 {
-	value, err := Float64(key, def)
+	f, err := Float64(key, def)
 	if err != nil {
 		panic(key + " must be float type")
 	}
-	return value
+	return f
 }
 
 // Bool retrieves bool value of the env variable named by the key or returns predefined one.
@@ -56,11 +56,11 @@ func Bool(key, def string) (bool, error) {
 // MustBool retrieves bool value of the env variable named by the key or returns predefined one.
 // Panics if value can not be converted to bool
 func MustBool(key, fallback string) bool {
-	value, err := Bool(key, fallback)
+	b, err := Bool(key, fallback)
 	if err != nil {
 		panic(key + " must be boolean type")
 	}
-	return value
+	return b
 }
 
 // Duration retrieves time.Duration value of the env variable named by the key or returns predefined one.
@@ -72,9 +72,9 @@ func Duration(key, def string) (time.Duration, error) {
 // MustDuration retrieves time.Duration value of the env variable named by the key or returns predefined one.
 // Panics if value can not be converted to time.Duration
 func MustDuration(key, def string) time.Duration {
-	value, err := Duration(key, def)
+	d, err := Duration(key, def)
 	if err != nil {
-		panic(key + " must be time.Duration type (such as \"300ms\", \"1.5h\" or \"2h45m\")")
+		panic(key + " must be time.Duration type (i.e. \"300ms\", \"1.5h\", \"2h45m\") etc.")
 	}
-	return value
+	return d
 }
