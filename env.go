@@ -1,4 +1,4 @@
-package env
+package envar
 
 import (
 	"os"
